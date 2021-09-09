@@ -1,4 +1,3 @@
-# Tuodaan random, kortti, pokeri ja pakka luokat
 from tkinter import *
 from PIL import ImageTk, Image
 import random
@@ -6,35 +5,24 @@ import kortti
 import pokeri
 import pakka
 
-
+#Create an instance of Tkinter and force the resolution to be 1200x800
 root = Tk()
 root.title('Korttipeli')
 root.geometry("1200x800")
 
-#Alustetaan pakka, johon lisätään kortit
+#Initialising the deck
 kortti_pakka = []
-#Alustetaan pelaajalle jaettava lista
+#Initialising list of the drawn cards
 jaetut_kortit = []
 temp_jaetut_kortit = []
 #kortti_pakka.sort()
-#testausta varten tulostetaan pakka
+#for test purpose to print the deck
 #for i in kortti_pakka:
 #	print(i.arvo, i.maa)
 vaihdetut = 5
 pokeri_kasi = StringVar()
 
-
-def draw_new_cards():
-	global kortti_pakka
-	global jaetut_kortit
-	global vaihdetut
-
-	vaihdetut = 5
-
-	kortti_pakka.clear()
-	pakka.Pakka.luo_pakka(kortti_pakka)
-	pokeri.Pokeri.arvo_kortit(kortti_pakka,jaetut_kortit,vaihdetut)
-
+# Functions to switch card states when selected
 def switch_kortti1():
 	if myKortti1_button["state"] == "normal":
 		myKortti1_button["state"] = "disabled"
@@ -80,7 +68,8 @@ def switch_undokortti5():
 	if undoKortti5_button["state"] == "normal":
 		undoKortti5_button["state"] = "disabled"
 		myKortti5_button["state"] = "normal"
-
+		
+# Drawing the cards and positioning them on the screen
 def draw_cards():
 		global myKortti1_button
 		global myKortti2_button
@@ -156,6 +145,8 @@ def draw_cards():
 		myLabel = Label(root, textvariable=pokeri_kasi)
 		myLabel.grid(row = 4, column = 2)
 
+# Function for changing cards and placing them on the screen
+
 def change_cards():
 	global kortti_pakka
 	global jaetut_kortit
@@ -187,11 +178,11 @@ def change_cards():
 		kortti_kuva1 = ImageTk.PhotoImage(Image.open("kortti_kuvat/"+kortti_sijainti))
 		myKortti1_button = Button(root, image=kortti_kuva1)
 		myKortti1_button.grid(row=0,column=0, padx=20, pady= 20)		
-		print(kortti_sijainti)
+#		print(kortti_sijainti)
 	#	print(len(kortti_pakka))
 		jaetut_kortit[0].arvo = temp_jaetut_kortit[0].arvo
 		jaetut_kortit[0].maa = temp_jaetut_kortit[0].maa
-		print(jaetut_kortit[0].arvo, jaetut_kortit[0].maa)
+#		print(jaetut_kortit[0].arvo, jaetut_kortit[0].maa)
 	if myKortti2_button["state"] == "disabled":
 		vaihdetut_kortit = 1
 		#jaetut_kortit.clear()
@@ -201,11 +192,11 @@ def change_cards():
 		kortti_kuva2 = ImageTk.PhotoImage(Image.open("kortti_kuvat/"+kortti_sijainti2))
 		myKortti2_button = Button(root, image=kortti_kuva2)
 		myKortti2_button.grid(row=0,column=1, padx=20, pady= 20)		
-		print(kortti_sijainti2)
+#		print(kortti_sijainti2)
 	#	print(len(kortti_pakka))
 		jaetut_kortit[1].arvo = temp_jaetut_kortit[0].arvo
 		jaetut_kortit[1].maa = temp_jaetut_kortit[0].maa
-		print(jaetut_kortit[1].arvo, jaetut_kortit[1].maa)
+#		print(jaetut_kortit[1].arvo, jaetut_kortit[1].maa)
 	if myKortti3_button["state"] == "disabled":
 		vaihdetut_kortit = 1
 		#jaetut_kortit.clear()
@@ -215,10 +206,10 @@ def change_cards():
 		kortti_kuva3 = ImageTk.PhotoImage(Image.open("kortti_kuvat/"+kortti_sijainti3))
 		myKortti3_button = Button(root, image=kortti_kuva3)
 		myKortti3_button.grid(row=0,column=2, padx=20, pady= 20)		
-		print(kortti_sijainti3)
+#		print(kortti_sijainti3)
 		jaetut_kortit[2].arvo = temp_jaetut_kortit[0].arvo
 		jaetut_kortit[2].maa = temp_jaetut_kortit[0].maa
-		print(jaetut_kortit[2].arvo, jaetut_kortit[2].maa)
+#		print(jaetut_kortit[2].arvo, jaetut_kortit[2].maa)
 	#	print(len(kortti_pakka))
 	if myKortti4_button["state"] == "disabled":
 		vaihdetut_kortit = 1
@@ -229,10 +220,10 @@ def change_cards():
 		kortti_kuva4 = ImageTk.PhotoImage(Image.open("kortti_kuvat/"+kortti_sijainti4))
 		myKortti4_button = Button(root, image=kortti_kuva4)
 		myKortti4_button.grid(row=0,column=3, padx=20, pady= 20)		
-		print(kortti_sijainti4)
+#		print(kortti_sijainti4)
 		jaetut_kortit[3].arvo = temp_jaetut_kortit[0].arvo
 		jaetut_kortit[3].maa = temp_jaetut_kortit[0].maa
-		print(jaetut_kortit[3].arvo, jaetut_kortit[3].maa)
+#		print(jaetut_kortit[3].arvo, jaetut_kortit[3].maa)
 	#	print(len(kortti_pakka))
 	if myKortti5_button["state"] == "disabled":
 		vaihdetut_kortit = 1
@@ -243,10 +234,10 @@ def change_cards():
 		kortti_kuva5 = ImageTk.PhotoImage(Image.open("kortti_kuvat/"+kortti_sijainti5))
 		myKortti5_button = Button(root, image=kortti_kuva5)
 		myKortti5_button.grid(row=0,column=4, padx=20, pady= 20)		
-		print(kortti_sijainti5)
+#		print(kortti_sijainti5)
 		jaetut_kortit[4].arvo = temp_jaetut_kortit[0].arvo
 		jaetut_kortit[4].maa = temp_jaetut_kortit[0].maa
-		print(jaetut_kortit[4].arvo, jaetut_kortit[4].maa)
+#		print(jaetut_kortit[4].arvo, jaetut_kortit[4].maa)
 	#	print(len(kortti_pakka))
 	if newGame_button["state"] == "disabled":
 		newGame_button["state"] = "normal"
@@ -258,12 +249,13 @@ def change_cards():
 	myLabel = Label(root, textvariable=pokeri_kasi)
 	myLabel.grid(row = 4, column = 2)
 
-
+#Defining buttons used in the game
 changeCards_button = Button(root, text="Change cards", state="disabled", command=change_cards)
 changeCards_button.grid(row=3,column=6, pady= 20)
 newGame_button = Button(root, text="New Game", state="normal", command =draw_cards)
 newGame_button.grid(row=3,column=7, pady= 20)
 
+# Necessary to keep program running
 root.mainloop()
 
 #TODO
